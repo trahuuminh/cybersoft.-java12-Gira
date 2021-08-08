@@ -7,9 +7,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.Table;
 
 import cybersoft.java12.gira.common.entity.BaseEntity;
@@ -31,4 +29,6 @@ public class Role extends BaseEntity {
 	)
 	private Set<Program>programs=new HashSet<>();
 	
+	@ManyToMany
+	private List<Program>rolePrograms=new ArrayList<Program>();
 }
