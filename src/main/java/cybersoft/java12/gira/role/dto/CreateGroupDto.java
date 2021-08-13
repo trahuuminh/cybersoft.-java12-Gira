@@ -3,13 +3,10 @@ package cybersoft.java12.gira.role.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
-
-public class CreateRoleDto {
+public class CreateGroupDto {
 	@NotBlank(message = "{role.name.not-blank}")
 	@Size(min = 3, max = 50, message = "{role.name.size}")
 	private String name;
-	
 	
 	@NotBlank
 	private String description;
@@ -26,6 +23,4 @@ public class CreateRoleDto {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
 }

@@ -1,6 +1,5 @@
 package cybersoft.java12.gira.role.controller;
 
-
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,41 +14,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cybersoft.java12.gira.common.ResponseHandler;
-import cybersoft.java12.gira.role.dto.CreateRoleDto;
-import cybersoft.java12.gira.role.entity.Role;
-import cybersoft.java12.gira.role.service.itf.RoleService;
-
+import cybersoft.java12.gira.role.dto.CreateProgramDto;
+import cybersoft.java12.gira.role.entity.Program;
+import cybersoft.java12.gira.role.service.itf.ProgramService;
 
 
 @RestController
-@RequestMapping("/api/role")
-public class RoleController {
-	private RoleService service;
+@RequestMapping("/api/program")
+public class ProgramController {
+	private ProgramService service;
 	
-	public RoleController(RoleService roleService) {
-		service = roleService;
+	
+	
+	public ProgramController(ProgramService programService) {
+		service=programService;
 	}
 	
 	@GetMapping
-	public Object findAllRole() {
-		List<Role> roles = service.findAll();
+	public Object findAllProgram() {
+		List<Program> programs = service.findAll();
 		
-		return ResponseHandler.getResponse(roles, HttpStatus.OK);
+		return ResponseHandler.getResponse(programs, HttpStatus.OK);
 	}
 	
-	
-	
-	
 	@PostMapping
-	public Object saveRole(@Valid @RequestBody CreateRoleDto dto, BindingResult errors) {
+	public Object saveProgram(@Valid @RequestBody CreateProgramDto dto, BindingResult errors) {
 		if(errors.hasErrors())
 			return new ResponseEntity<>(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
 		
-		Role addedRole = service.addNewRole(dto);
+		Program program = service.addNewProgram(dto);
 		
-		return ResponseHandler.getResponse(addedRole, HttpStatus.CREATED);
+		return ResponseHandler.getResponse(program, HttpStatus.CREATED);
 	}
-	
-	
 	
 }

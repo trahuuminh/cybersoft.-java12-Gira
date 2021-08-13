@@ -10,4 +10,6 @@ public interface RoleService {
 	List<Role> findAll();
 
 	Role addNewRole(CreateRoleDto dto);
+	
+	
 }
