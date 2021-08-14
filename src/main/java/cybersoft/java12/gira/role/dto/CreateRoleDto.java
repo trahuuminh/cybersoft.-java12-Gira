@@ -11,7 +11,7 @@ public class CreateRoleDto {
 	private String name;
 	
 	
-	@NotBlank
+	
 	private String description;
 	
 	public String getName() {
