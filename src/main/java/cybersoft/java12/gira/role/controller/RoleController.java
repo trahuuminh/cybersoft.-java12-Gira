@@ -59,7 +59,17 @@ public class RoleController {
 			
 		Role updatedRole=service.addProgram(dto);
 		
-		return null;
+		return ResponseHandler.getResponse(updatedRole, HttpStatus.OK);
+	}
+	
+	@PostMapping("/delete-program")
+	public Object deleteProgram(@Valid @RequestBody AddProgramDto dto, BindingResult errors) {
+		if(errors.hasErrors())
+			return ResponseHandler.getResponse(errors, HttpStatus.BAD_REQUEST);
+		Role role=service.deleteProgram(dto);
+		
+		return ResponseHandler.getResponse(role, HttpStatus.OK);
+		
 	}
 	
 }
