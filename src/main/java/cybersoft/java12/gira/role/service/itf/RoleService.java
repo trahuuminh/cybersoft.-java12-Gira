@@ -17,5 +17,5 @@ public interface RoleService {
 
 	Role addProgram(AddProgramDto dto);
 	
-	
+	Role deleteProgram(AddProgramDto dto);
 }
