@@ -49,6 +49,16 @@ public class RoleServiceImpl implements RoleService {
 		return repository.save(role);
 	}
 
+	@Override
+	public Role deleteProgram(AddProgramDto dto) {
+		Role role=repository.getById(dto.getRoleId());
+		Program program=Prepository.getById(dto.getProgramId());
+		role.removeProgram(program);
+		return repository.save(role);
+	}
+
+	
+
 	
 
 
