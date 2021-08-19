@@ -19,6 +19,7 @@ import javax.validation.constraints.Size;
 
 import cybersoft.java12.gira.common.entity.BaseEntity;
 
+
 @Entity
 @Table(name = "gira_role")
 public class Role extends BaseEntity {
