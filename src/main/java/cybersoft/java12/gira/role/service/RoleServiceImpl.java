@@ -33,7 +33,7 @@ public class RoleServiceImpl implements RoleService {
 	public Role addNewRole(CreateRoleDto dto) {
 		Role newRole = new Role();
 		
-		newRole.setName(dto.getName());
+		newRole.setName(dto.getName().toUpperCase());
 		newRole.setDescription(dto.getDescription());
 		
 		return repository.save(newRole);
@@ -56,6 +56,20 @@ public class RoleServiceImpl implements RoleService {
 		role.removeProgram(program);
 		return repository.save(role);
 	}
+
+	@Override
+	public boolean isTakenName(String roleName) {		
+		return repository.countByName(roleName.toUpperCase())>= 1;
+	}
+
+	@Override
+	public boolean isExisted(Long roleId) {		
+		return repository.existsById(roleId);
+	}
+
+	
+
+	
 
 	
 
