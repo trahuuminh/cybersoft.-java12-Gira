@@ -18,4 +18,6 @@ public interface ProgramRepository extends JpaRepository<Program, Long> {
 	@Transactional(readOnly = true)
 	@Query("SELECT p FROM Program p")
 	List<ProgramDto> findAllDto();
+
+	
 }

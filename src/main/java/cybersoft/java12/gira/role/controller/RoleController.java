@@ -6,10 +6,10 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +18,7 @@ import cybersoft.java12.gira.common.ResponseHandler;
 import cybersoft.java12.gira.role.dto.AddProgramDto;
 import cybersoft.java12.gira.role.dto.CreateRoleDto;
 import cybersoft.java12.gira.role.dto.RoleDto;
+import cybersoft.java12.gira.role.dto.UpdateRoleDto;
 import cybersoft.java12.gira.role.entity.Role;
 import cybersoft.java12.gira.role.service.itf.RoleService;
 
@@ -45,7 +46,7 @@ public class RoleController {
 	@PostMapping
 	public Object saveRole(@Valid @RequestBody CreateRoleDto dto, BindingResult errors) {
 		if(errors.hasErrors())
-			return new ResponseEntity<>(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
+			return ResponseHandler.getResponse(errors,HttpStatus.BAD_REQUEST);
 		
 		Role addedRole = service.addNewRole(dto);
 		
@@ -62,7 +63,7 @@ public class RoleController {
 		return ResponseHandler.getResponse(updatedRole, HttpStatus.OK);
 	}
 	
-	@PostMapping("/delete-program")
+	@PostMapping("/remove-program")
 	public Object deleteProgram(@Valid @RequestBody AddProgramDto dto, BindingResult errors) {
 		if(errors.hasErrors())
 			return ResponseHandler.getResponse(errors, HttpStatus.BAD_REQUEST);
@@ -70,6 +71,13 @@ public class RoleController {
 		
 		return ResponseHandler.getResponse(role, HttpStatus.OK);
 		
+	}
+	
+	@PutMapping
+	public Object updateRole(@Valid @RequestBody UpdateRoleDto dto, BindingResult errors) {
+		if(errors.hasErrors())
+			return ResponseHandler.getResponse(errors, HttpStatus.BAD_REQUEST);
+		return null;
 	}
 	
 }
