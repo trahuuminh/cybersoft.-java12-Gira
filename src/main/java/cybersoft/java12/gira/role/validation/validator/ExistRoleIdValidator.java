@@ -12,6 +12,10 @@ public class ExistRoleIdValidator implements ConstraintValidator<ExistRoleId, Lo
 	private String message;
 	private RoleService service;
 	
+	public ExistRoleIdValidator(RoleService roleService) {
+		service=roleService;
+	}
+	
 	@Override
 	public void initialize(ExistRoleId constraintAnnotation) {
 		this.message=constraintAnnotation.message();
