@@ -67,6 +67,10 @@ public class RoleServiceImpl implements RoleService {
 		return repository.existsById(roleId);
 	}
 
+	@Override
+	public void deleteById(Long roleId) {
+		repository.deleteById(roleId);;
+	}
 	
 
 	

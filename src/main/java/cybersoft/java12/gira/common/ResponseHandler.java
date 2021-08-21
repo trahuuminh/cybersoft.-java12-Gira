@@ -32,7 +32,7 @@ public class ResponseHandler {
 		return new ResponseEntity<Object>(map, status);
 	}
 	
-	public Object getResponse(HttpStatus badRequest) {
+	public static Object getResponse(HttpStatus badRequest) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("content", "");
 		map.put("errors", "");
