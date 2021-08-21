@@ -23,6 +23,8 @@ public interface RoleService {
 
 	boolean isExisted(Long roleId);
 
+	void deleteById(Long roleId);
+
 
 
 	
