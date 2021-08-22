@@ -40,7 +40,7 @@ public class ProgramController {
 	@PostMapping
 	public Object saveProgram(@Valid @RequestBody CreateProgramDto dto, BindingResult errors) {
 		if(errors.hasErrors())
-			return new ResponseHandler().getResponse(HttpStatus.BAD_REQUEST);
+			return ResponseHandler.getResponse(HttpStatus.BAD_REQUEST);
 		
 		Program program = service.addNewProgram(dto);
 		

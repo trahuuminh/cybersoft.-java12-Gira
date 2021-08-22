@@ -10,6 +10,7 @@ import cybersoft.java12.gira.user.validation.annotation.ConfirmPassword;
 public class ConfirmPasswordValidator implements ConstraintValidator<ConfirmPassword, CreateUserDto> {
 	private String message;
 	
+	@Override
 	public void initialize(ConfirmPassword constraintAnnotation) {
 		message=constraintAnnotation.message();
 	}
