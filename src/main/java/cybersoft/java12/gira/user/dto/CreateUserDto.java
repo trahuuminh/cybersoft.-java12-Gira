@@ -3,7 +3,7 @@ package cybersoft.java12.gira.user.dto;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-import cybersoft.java12.gira.user.validation.annotation.ConfirmPassword;
+
 import cybersoft.java12.gira.user.validation.annotation.UniqueEmail;
 import cybersoft.java12.gira.user.validation.annotation.UniqueUsername;
 
@@ -17,7 +17,6 @@ public class CreateUserDto {
 	private String password;
 	
 	@NotBlank(message = "{user.confirm-password.not-blank}")
-	@ConfirmPassword
 	private String confirmPassword;
 	
 	

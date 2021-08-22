@@ -14,7 +14,7 @@ import cybersoft.java12.gira.user.validation.validator.ConfirmPasswordValidator;
 
 @Constraint(validatedBy = ConfirmPasswordValidator.class)
 @Retention(RUNTIME)
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 public @interface ConfirmPassword {
 	String message() default "Confirm password is not same with password";
 	
