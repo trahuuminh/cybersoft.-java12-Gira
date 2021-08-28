@@ -19,6 +19,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	int countByEmail(String email);
 	
-	@Query("SELECT u FROM User u JOIN FETCH u.groups")// nếu không có JOIN FETCH sẽ sinh ra 2 câu SQL, sẽ dư ra 1 câu SELECT groups
+	@Query("SELECT u FROM User u LEFT JOIN FETCH u.groups WHERE u.username= ?1")// nếu không có JOIN FETCH sẽ sinh ra 2 câu SQL, sẽ dư ra 1 câu SELECT groups
 	Optional<User> findByUserNameWithGroups(String username);
 }	
