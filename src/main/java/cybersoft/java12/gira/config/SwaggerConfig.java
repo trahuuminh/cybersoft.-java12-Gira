@@ -28,7 +28,7 @@ public class SwaggerConfig {
 				.securityContexts(Arrays.asList(securityContext()))
 				.securitySchemes(Arrays.asList(apiKey()))
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("cybersoft.javabackend.java12.gira"))
+				.apis(RequestHandlerSelectors.basePackage("cybersoft.java12.gira"))
 				.build()
 				.apiInfo(apiInfo());
 	}

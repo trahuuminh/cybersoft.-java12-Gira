@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import cybersoft.java12.gira.user.dto.CreateUserDto;
 import cybersoft.java12.gira.user.dto.UserDto;
+import cybersoft.java12.gira.user.dto.UserProgramDto;
 import cybersoft.java12.gira.user.entity.User;
 import cybersoft.java12.gira.user.repository.UserRepository;
 import cybersoft.java12.gira.user.service.itf.UserService;
@@ -55,6 +56,9 @@ public class UserServiceImpl implements UserService {
 		return repository.save(user);
 	}
 	
-	
+	@Override
+	public List<UserProgramDto> findAllProgramsOfUser(String username) {
+		return repository.findAllProgramsByUsername(username);
+	}
 	
 }
