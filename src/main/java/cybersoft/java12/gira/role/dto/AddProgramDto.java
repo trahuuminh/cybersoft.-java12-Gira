@@ -5,7 +5,11 @@ import javax.validation.constraints.NotNull;
 
 import cybersoft.java12.gira.role.validation.annotation.ExistProgramId;
 import cybersoft.java12.gira.role.validation.annotation.ExistRoleId;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class AddProgramDto {
 	@ExistRoleId
 	@NotNull
@@ -17,20 +21,5 @@ public class AddProgramDto {
 	@Min(value = 1)
 	private Long programId;
 
-	public Long getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
-	}
-
-	public Long getProgramId() {
-		return programId;
-	}
-
-	public void setProgramId(Long programId) {
-		this.programId = programId;
-	}
 	
 }

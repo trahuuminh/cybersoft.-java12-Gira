@@ -8,11 +8,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DeleteProgramDto {
+public class AddUserDto {
+	
 	@NotNull
 	@Min(value = 1)
-	private Long programId;
-
+	private Long userId;
 	
-	
+	@NotNull
+	@Min(value = 1)
+	private Long groupId;
 }
