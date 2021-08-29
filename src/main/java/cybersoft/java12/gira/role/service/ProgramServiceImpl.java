@@ -3,6 +3,7 @@ package cybersoft.java12.gira.role.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cybersoft.java12.gira.role.dto.CreateProgramDto;
 import cybersoft.java12.gira.role.dto.ProgramDto;
@@ -11,6 +12,7 @@ import cybersoft.java12.gira.role.repository.ProgramRepository;
 import cybersoft.java12.gira.role.service.itf.ProgramService;
 
 @Service
+@Transactional
 public class ProgramServiceImpl implements ProgramService {
 	private ProgramRepository repository;
 	

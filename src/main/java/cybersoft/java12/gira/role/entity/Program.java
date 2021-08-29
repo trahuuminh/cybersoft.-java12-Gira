@@ -15,7 +15,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import cybersoft.java12.gira.common.entity.BaseEntity;
 import cybersoft.java12.gira.role.util.HttpMethods;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(exclude = {"roles"})
+@EqualsAndHashCode(exclude = {"roles"},callSuper = false)
 @Entity
 @Table(name = "gira_program")
 public class Program extends BaseEntity {
@@ -32,39 +44,10 @@ public class Program extends BaseEntity {
 	
 	@ManyToMany(mappedBy = "programs", fetch = FetchType.LAZY)
 	@JsonIgnore
+	@Builder.Default
 	private Set<Role> roles = new HashSet<>();
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public HttpMethods getMethod() {
-		return method;
-	}
-
-	public void setMethod(HttpMethods method) {
-		this.method = method;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
+	
 	
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cybersoft.java12.gira.role.dto.AddProgramDto;
 import cybersoft.java12.gira.role.dto.CreateRoleDto;
@@ -15,6 +16,7 @@ import cybersoft.java12.gira.role.repository.RoleRepository;
 import cybersoft.java12.gira.role.service.itf.RoleService;
 
 @Service
+@Transactional
 public class RoleServiceImpl implements RoleService {
 	private RoleRepository repository;
 	private ProgramRepository Prepository;
