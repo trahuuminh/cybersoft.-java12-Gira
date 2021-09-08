@@ -79,7 +79,9 @@ public class RoleController {
 	public Object updateRole(@Valid @RequestBody UpdateRoleDto dto, BindingResult errors) {
 		if(errors.hasErrors())
 			return ResponseHandler.getResponse(errors, HttpStatus.BAD_REQUEST);
-		return null;
+		Role updatedRole=service.updateRole(dto);
+		
+		return ResponseHandler.getResponse(updatedRole,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/delete/{role-id}")

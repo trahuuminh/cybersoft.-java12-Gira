@@ -26,7 +26,7 @@ public class GroupServiceImpl implements GroupService {
 	private final RoleRepository roleRepository;
 	private final UserRepository userRepository;
 
-	/*public GroupServiceImpl(GroupRepository groupRepository,RoleRepository RRepository ) {
+	/*public GroupServiceImpl(GroupRepository groupRepository,RoleRepository RRepository) {
 		repository = groupRepository;
 		roleRepository=RRepository;
 	}*/
@@ -56,11 +56,11 @@ public class GroupServiceImpl implements GroupService {
 	}
 
 	@Override
+	@Transactional
 	public Group addRole(AddRoleDto dto) {
 		Group group = repository.getById(dto.getGroupId());
 		Role role = roleRepository.getById(dto.getRoleId());
-		group.addRole(role);
-		return repository.save(group);
+		return group.addRole(role);
 	}
 
 	@Override
@@ -72,6 +72,15 @@ public class GroupServiceImpl implements GroupService {
 		
 		return group.addUser(user);
 	}
+
+	@Override
+	@Transactional
+	public Group removeRole(AddRoleDto dto) {
+		Group group=repository.getById(dto.getGroupId());
+		Role role=roleRepository.getById(dto.getRoleId());
+		return group.deleteRole(role);
+	}
+	
 	
 	
 	
