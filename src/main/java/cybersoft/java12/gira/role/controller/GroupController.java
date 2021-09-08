@@ -67,8 +67,13 @@ private GroupService service;
 	}
 	
 	@PostMapping("/remove-role")
-	public Object removeRoleFromGroup() {
-		return null;
+	public Object removeRoleFromGroup(@Valid @RequestBody AddRoleDto dto, BindingResult errors) {
+		if(errors.hasErrors())
+			return ResponseHandler.getResponse(errors,HttpStatus.BAD_REQUEST);
+		
+		Group updatedGroup = service.removeRole(dto);
+		
+		return ResponseHandler.getResponse(updatedGroup,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")

@@ -61,9 +61,10 @@ public class Group extends BaseEntity {
 	@Builder.Default
 	private Set<User>users=new HashSet<>();
 
-	public void addRole(Role role) {
+	public Group addRole(Role role) {
 		roles.add(role);
 		role.getGroups().add(this);
+		return this;
 	}
 
 	public Group addUser(User user) {
@@ -72,6 +73,11 @@ public class Group extends BaseEntity {
 		return this;
 	}
 	
+	public Group deleteRole(Role role) {
+		roles.remove(role);
+		role.getGroups().remove(this);
+		return this;
+	}
 	
 	
 	

@@ -7,6 +7,7 @@ import java.util.List;
 import cybersoft.java12.gira.role.dto.AddProgramDto;
 import cybersoft.java12.gira.role.dto.CreateRoleDto;
 import cybersoft.java12.gira.role.dto.RoleDto;
+import cybersoft.java12.gira.role.dto.UpdateRoleDto;
 import cybersoft.java12.gira.role.entity.Role;
 
 public interface RoleService {
@@ -25,7 +26,9 @@ public interface RoleService {
 
 	void deleteById(Long roleId);
 
+	Role updateRole(UpdateRoleDto dto);
 
+	
 
 	
 	

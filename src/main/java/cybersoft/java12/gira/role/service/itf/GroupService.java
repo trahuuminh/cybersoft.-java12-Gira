@@ -17,4 +17,5 @@ public interface GroupService {
 	boolean isTakenName(String groupName);
 	Group addRole( AddRoleDto dto);
 	Group addUser(AddUserDto dto);
+	Group removeRole(AddRoleDto dto);
 }
