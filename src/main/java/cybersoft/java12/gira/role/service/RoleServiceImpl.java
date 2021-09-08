@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import cybersoft.java12.gira.role.dto.AddProgramDto;
 import cybersoft.java12.gira.role.dto.CreateRoleDto;
 import cybersoft.java12.gira.role.dto.RoleDto;
+import cybersoft.java12.gira.role.dto.UpdateRoleDto;
 import cybersoft.java12.gira.role.entity.Program;
 import cybersoft.java12.gira.role.entity.Role;
 import cybersoft.java12.gira.role.repository.ProgramRepository;
@@ -72,6 +73,15 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public void deleteById(Long roleId) {
 		repository.deleteById(roleId);;
+	}
+
+	@Override
+	public Role updateRole(UpdateRoleDto dto) {
+		Role role=repository.getById(dto.getId());
+		
+		role.setName(dto.getName());
+		role.setDescription(dto.getDescription());
+		return repository.save(role);
 	}
 	
 
