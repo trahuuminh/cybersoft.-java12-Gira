@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -16,6 +17,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import cybersoft.java12.gira.common.entity.BaseEntity;
+import cybersoft.java12.gira.product.entity.Order;
 import cybersoft.java12.gira.role.entity.Group;
 import cybersoft.java12.gira.user.util.UserStatus;
 import lombok.AllArgsConstructor;
@@ -29,8 +31,8 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"groups"})
-@EqualsAndHashCode(exclude = {"groups"},callSuper = false)
+@ToString(exclude = {"groups","orders"})
+@EqualsAndHashCode(exclude = {"groups","orders"},callSuper = false)
 @Entity
 @Table(name = "gira_user")
 public class User extends BaseEntity {
@@ -67,6 +69,9 @@ public class User extends BaseEntity {
 	@Builder.Default
 	private Set<Group>groups=new HashSet<>();
 
-	
+	@JsonIgnore
+	@Builder.Default
+	@OneToMany(mappedBy = "user")
+	private Set<Order> orders= new HashSet<>();
 	
 }
