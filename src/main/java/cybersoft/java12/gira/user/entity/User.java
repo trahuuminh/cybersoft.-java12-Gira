@@ -3,10 +3,14 @@ package cybersoft.java12.gira.user.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -18,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import cybersoft.java12.gira.common.entity.BaseEntity;
 import cybersoft.java12.gira.product.entity.Order;
+import cybersoft.java12.gira.product.entity.Product;
 import cybersoft.java12.gira.role.entity.Group;
 import cybersoft.java12.gira.user.util.UserStatus;
 import lombok.AllArgsConstructor;
@@ -31,8 +36,8 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"groups","orders"})
-@EqualsAndHashCode(exclude = {"groups","orders"},callSuper = false)
+@ToString(exclude = {"groups"})
+@EqualsAndHashCode(exclude = {"groups"},callSuper = false)
 @Entity
 @Table(name = "gira_user")
 public class User extends BaseEntity {
@@ -72,6 +77,19 @@ public class User extends BaseEntity {
 	@JsonIgnore
 	@Builder.Default
 	@OneToMany(mappedBy = "user")
-	private Set<Order> orders= new HashSet<>();
+	private Set<Order> orders=new HashSet<>();
 	
+	@JsonIgnore
+	@Builder.Default
+	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
+	@JoinTable(name = "gira_user_product",
+	joinColumns = @JoinColumn(name ="user_id"),
+	inverseJoinColumns = @JoinColumn(name="product_id"))
+	private Set<Product> recentCart=new HashSet<>();
+	
+	public User addOrder(Order order) {
+		orders.add(order);
+		order.setUser(this);
+		return this;
+	}
 }
