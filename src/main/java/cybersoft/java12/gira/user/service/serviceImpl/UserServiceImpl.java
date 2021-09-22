@@ -6,7 +6,14 @@ import java.util.List;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import cybersoft.java12.gira.product.entity.Order;
+import cybersoft.java12.gira.product.entity.Product;
+import cybersoft.java12.gira.product.repository.OrderRepository;
+import cybersoft.java12.gira.product.repository.ProductRepository;
+import cybersoft.java12.gira.user.dto.AddOrder;
+import cybersoft.java12.gira.user.dto.AddToCart;
 import cybersoft.java12.gira.user.dto.CreateUserDto;
 import cybersoft.java12.gira.user.dto.UserDto;
 import cybersoft.java12.gira.user.dto.UserProgramDto;
@@ -19,10 +26,14 @@ import cybersoft.java12.gira.user.util.UserStatus;
 public class UserServiceImpl implements UserService {
 	private UserRepository repository;
 	private PasswordEncoder encoder;
+	private ProductRepository productRepo;
+	private OrderRepository orderRepo;
 	
-	public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+	public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, ProductRepository productRepository, OrderRepository orderRepository) {
 		repository=userRepository;
 		encoder=passwordEncoder;
+		productRepo=productRepository;
+		orderRepo=orderRepository;
 	}
 
 	@Override
@@ -59,6 +70,24 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserProgramDto> findAllProgramsOfUser(String username) {
 		return repository.findAllProgramsByUsername(username);
+	}
+
+	@Override
+	@Transactional
+	public User addToCart(AddToCart dto) {
+		Product product=productRepo.getById(dto.getProductId());
+		User user=repository.getById(dto.getUserId());
+		
+		user.getRecentCart().add(product);
+		return repository.save(user);
+	}
+
+	@Override
+	public User addOrder(AddOrder dto) {
+		User user=repository.getById(dto.getUserId());
+		Order order=orderRepo.getById(dto.getOrderId());
+				
+		return user.addOrder(order);
 	}
 	
 }

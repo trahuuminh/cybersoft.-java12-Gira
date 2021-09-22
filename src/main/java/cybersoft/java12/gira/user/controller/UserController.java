@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cybersoft.java12.gira.common.ResponseHandler;
+import cybersoft.java12.gira.user.dto.AddToCart;
 import cybersoft.java12.gira.user.dto.CreateUserDto;
 import cybersoft.java12.gira.user.dto.UserDto;
 import cybersoft.java12.gira.user.dto.UserProgramDto;
@@ -47,7 +48,7 @@ public class UserController {
 		return ResponseHandler.getResponse(programs, HttpStatus.OK);
 	}
 	
-	@PostMapping
+	@PostMapping("/createuser")
 	public Object createNewUser(@Valid @RequestBody CreateUserDto dto, BindingResult errors) {
 		if(errors.hasErrors()) {
 			return ResponseHandler.getResponse(errors,HttpStatus.BAD_REQUEST);
@@ -56,5 +57,15 @@ public class UserController {
 		
 		return ResponseHandler.getResponse(newUser, HttpStatus.CREATED);
 		
+	}
+	
+	@PostMapping("/add-to-cart")
+	public Object addToCart(@Valid @RequestBody AddToCart dto,BindingResult errors) {
+		if(errors.hasErrors())
+			return ResponseHandler.getResponse(errors,HttpStatus.BAD_REQUEST);
+		
+		User user=service.addToCart(dto);
+		
+		return ResponseHandler.getResponse(user,HttpStatus.OK);
 	}
 }

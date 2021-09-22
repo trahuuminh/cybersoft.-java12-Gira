@@ -1,14 +1,9 @@
 package cybersoft.java12.gira.product.entity;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import cybersoft.java12.gira.common.entity.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -18,7 +13,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -27,24 +21,19 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "gira_product")
-public class Product extends BaseEntity {
+public class Product extends BaseEntity{
+	
 	
 	@NotNull
-	private String name;
+	private String Name;
 	
-	private String description;
+	private String Description;
 	
 	@NotNull
 	private Long price;
 	
+	@NotNull
+	private int quantity;
 	
-	private String status;
 	
-	
-	private String producer;
-	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "products")
-	@Builder.Default
-	private Set<Order>order=new HashSet<>();
 }
