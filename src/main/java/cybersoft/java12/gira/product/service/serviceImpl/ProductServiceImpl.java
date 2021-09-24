@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 
-
+	@Transactional
 	@Override
 	public Product updateProduct(UpdateProductDto dto) {
 		Product product=productRepo.getById(dto.getId());

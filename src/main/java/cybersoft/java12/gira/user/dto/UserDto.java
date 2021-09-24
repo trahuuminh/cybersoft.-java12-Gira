@@ -2,6 +2,8 @@ package cybersoft.java12.gira.user.dto;
 
 import java.util.Set;
 
+import cybersoft.java12.gira.product.entity.Order;
+import cybersoft.java12.gira.product.entity.Product;
 import cybersoft.java12.gira.role.entity.Group;
 import cybersoft.java12.gira.user.util.UserStatus;
 
@@ -47,5 +49,7 @@ public interface UserDto {
 
 	public Set<Group> getGroups() ;
 
+	public Set<Order> getOrders();
 	
+	public Set<Product> getRecentCart();
 }

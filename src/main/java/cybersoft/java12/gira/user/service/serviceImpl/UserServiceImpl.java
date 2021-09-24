@@ -15,6 +15,7 @@ import cybersoft.java12.gira.product.repository.ProductRepository;
 import cybersoft.java12.gira.user.dto.AddOrder;
 import cybersoft.java12.gira.user.dto.AddToCart;
 import cybersoft.java12.gira.user.dto.CreateUserDto;
+import cybersoft.java12.gira.user.dto.UpdateUserDto;
 import cybersoft.java12.gira.user.dto.UserDto;
 import cybersoft.java12.gira.user.dto.UserProgramDto;
 import cybersoft.java12.gira.user.entity.User;
@@ -88,6 +89,25 @@ public class UserServiceImpl implements UserService {
 		Order order=orderRepo.getById(dto.getOrderId());
 				
 		return user.addOrder(order);
+	}
+	
+	@Transactional
+	@Override
+	public User updateUser(UpdateUserDto dto) {
+		User user=repository.getById(dto.getId());
+		
+		user.setFullname(dto.getFullname());
+		user.setDisplayname(dto.getDisplayname());
+		user.setAvatar(dto.getAvatar());
+		if(!(dto.getEmail().isBlank()||dto.getEmail().isEmpty())) {
+			user.setEmail(dto.getEmail());
+		}
+		user.setFacebook(dto.getFacebook());
+		user.setJob(dto.getJob());
+		user.setDeparment(dto.getDeparment());
+		user.setHobby(dto.getHobby());
+		
+		return repository.save(user);
 	}
 	
 }
