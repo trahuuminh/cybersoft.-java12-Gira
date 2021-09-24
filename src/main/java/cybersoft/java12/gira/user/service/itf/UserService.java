@@ -5,6 +5,7 @@ import java.util.List;
 import cybersoft.java12.gira.user.dto.AddOrder;
 import cybersoft.java12.gira.user.dto.AddToCart;
 import cybersoft.java12.gira.user.dto.CreateUserDto;
+import cybersoft.java12.gira.user.dto.UpdateUserDto;
 import cybersoft.java12.gira.user.dto.UserDto;
 import cybersoft.java12.gira.user.dto.UserProgramDto;
 import cybersoft.java12.gira.user.entity.User;
@@ -22,6 +23,8 @@ public interface UserService {
 	User addToCart(AddToCart dto);
 
 	User addOrder(AddOrder dto);
+	
+	User updateUser(UpdateUserDto dto);
 	
 	List<UserProgramDto> findAllProgramsOfUser(String username);
 }
