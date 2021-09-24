@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cybersoft.java12.gira.common.ResponseHandler;
 import cybersoft.java12.gira.user.dto.AddToCart;
 import cybersoft.java12.gira.user.dto.CreateUserDto;
+import cybersoft.java12.gira.user.dto.UpdateUserDto;
 import cybersoft.java12.gira.user.dto.UserDto;
 import cybersoft.java12.gira.user.dto.UserProgramDto;
 import cybersoft.java12.gira.user.entity.User;
@@ -48,7 +50,7 @@ public class UserController {
 		return ResponseHandler.getResponse(programs, HttpStatus.OK);
 	}
 	
-	@PostMapping("/createuser")
+	@PostMapping("/create-user")
 	public Object createNewUser(@Valid @RequestBody CreateUserDto dto, BindingResult errors) {
 		if(errors.hasErrors()) {
 			return ResponseHandler.getResponse(errors,HttpStatus.BAD_REQUEST);
@@ -57,6 +59,16 @@ public class UserController {
 		
 		return ResponseHandler.getResponse(newUser, HttpStatus.CREATED);
 		
+	}
+	
+	@PutMapping("/update-user")
+	public Object updateUser(@Valid @RequestBody UpdateUserDto dto, BindingResult errors) {
+		if(errors.hasErrors())
+			return ResponseHandler.getResponse(errors,HttpStatus.BAD_REQUEST);
+		
+		User updatedUser=service.updateUser(dto);
+		
+		return ResponseHandler.getResponse(updatedUser,HttpStatus.OK);
 	}
 	
 	@PostMapping("/add-to-cart")

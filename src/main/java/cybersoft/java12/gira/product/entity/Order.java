@@ -1,14 +1,7 @@
 package cybersoft.java12.gira.product.entity;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -38,13 +31,7 @@ public class Order extends BaseEntity {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@JsonIgnore
-	@Builder.Default
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
-	@JoinTable(name = "gira_order_product",
-	joinColumns = @JoinColumn(name = "order_id"),
-	inverseJoinColumns = @JoinColumn(name = "product_id"))
-	private Set<Product> products=new HashSet<>();
+	
 	
 	
 }
